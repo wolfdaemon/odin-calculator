@@ -1,0 +1,24 @@
+:root {
+	/* declare variables */
+	--theme-core-color-bg: #222222;
+	--theme-core-color-fg: #dbd2c3;
+	--theme-core-color-accent: #86ba64;
+}
+
+body {
+	background-color: var(--theme-core-color-bg);
+	background-image: url("https://www.transparenttextures.com/patterns/egg-shell.png"); /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+	color: var(--theme-core-color-fg);
+}
+
+button {
+	background-color: var(--theme-core-color-accent);
+	background-image: url("https://www.transparenttextures.com/patterns/egg-shell.png"); /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+	color: var(--theme-core-color-fg);
+	border: var(--theme-core-color-bg);
+}
+
+.icon-copyleft {
+  display: inline-block;
+  transform: rotate(180deg);
+}

@@ -1,8 +1,14 @@
 :root {
 	/* declare variables */
-	--theme-core-color-bg: #222222;
+	--theme-core-color-bg: #2a2a2a;
 	--theme-core-color-fg: #dbd2c3;
 	--theme-core-color-accent: #86ba64;
+	--theme-core-color-accent-fg: black;
+	--theme-core-color-accent-bg: #D7DED3;
+}
+
+a {
+	color: var(--theme-core-color-accent);
 }
 
 body {
@@ -16,6 +22,34 @@ button {
 	background-image: url("https://www.transparenttextures.com/patterns/egg-shell.png"); /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 	color: var(--theme-core-color-fg);
 	border: var(--theme-core-color-bg);
+}
+
+section.numpad {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+section.numpad button {
+	display: flex;
+	margin: .3rem;
+}
+
+.display {
+	background-color: var(--theme-core-color-accent-bg);
+	border: 1px solid var(--theme-core-color-fg);
+	display: flex;
+	flex-direction: column;
+	font-family: Doto, sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	height: 4rem;
+	justify-content: end;
+}
+
+.display-output {
+	color: var(--theme-core-color-accent-fg);
+	padding-left: .5rem;
+	font-size: 3rem;
 }
 
 .icon-copyleft {

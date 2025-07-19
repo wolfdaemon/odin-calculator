@@ -3,8 +3,8 @@
 	--theme-core-color-bg: #2a2a2a;
 	--theme-core-color-fg: #dbd2c3;
 	--theme-core-color-accent: #86ba64;
-	--theme-core-color-accent-fg: black;
-	--theme-core-color-accent-bg: #D7DED3;
+	--theme-core-color-accent-fg: #030603;
+	--theme-core-color-accent-bg: #9eaea6;
 }
 
 a {
@@ -18,32 +18,46 @@ body {
 }
 
 button {
-	background-color: var(--theme-core-color-accent);
+	background-color: var(--theme-core-color-fg);
 	background-image: url("https://www.transparenttextures.com/patterns/egg-shell.png"); /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
-	color: var(--theme-core-color-fg);
-	border: var(--theme-core-color-bg);
+	color: var(--theme-core-color-bg);
+	border: var(--theme-core-color-fg);
 }
 
-section.numpad {
+section.calculator {
 	display: flex;
 	flex-wrap: wrap;
+	flex-direction: row;
 }
 
-section.numpad button {
+section.calculator button {
 	display: flex;
 	margin: .3rem;
+	height: 4.2rem;
+	width: 4.2rem;
+}
+
+section.calculator section.numpad-row {
+	display: flex;
+	flex-direction: row;
+}
+
+.accent {
+	background-color: var(--theme-core-color-accent);
+	color: var(--theme-core-color-accent-fg);
 }
 
 .display {
+	align-items: end;
 	background-color: var(--theme-core-color-accent-bg);
 	border: 1px solid var(--theme-core-color-fg);
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	font-family: Doto, sans-serif;
 	font-weight: 400;
 	font-style: normal;
-	height: 4rem;
 	justify-content: end;
+	width: 19.2rem;
 }
 
 .display-output {

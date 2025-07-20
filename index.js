@@ -31,10 +31,12 @@ function operate(num, num1, btn) {
 	}
 }
 
-const calculator = document.querySelector(".calculator");
+const displayOutput = document.querySelector(".display-output");
 
-calculator.addEventListener("click", (e) => {
-	console.log(e.target.innerHTML);
+const btn = document.querySelectorAll("button").forEach(item => {
+	item.addEventListener("click", (e) => {
+		displayOutput.innerHTML = e.target.innerHTML;
+	});
 });
 
 /*

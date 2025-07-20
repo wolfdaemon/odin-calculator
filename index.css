@@ -66,6 +66,7 @@ section.calculator section.numpad-row:last-child {
 	font-family: Doto, sans-serif;
 	font-weight: 400;
 	font-style: normal;
+	height: 4rem;
 	justify-content: end;
 	width: 19.2rem;
 }

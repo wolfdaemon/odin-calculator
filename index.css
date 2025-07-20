@@ -37,9 +37,19 @@ section.calculator button {
 	width: 4.2rem;
 }
 
+section.calculator button.btn-equals {
+	position: relative;
+	bottom: 4.8rem;
+	height: 9rem;
+}
+
 section.calculator section.numpad-row {
 	display: flex;
 	flex-direction: row;
+}
+
+section.calculator section.numpad-row:last-child {
+	margin: 0 0 -5rem 0;
 }
 
 .accent {

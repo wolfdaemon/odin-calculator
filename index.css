@@ -24,32 +24,40 @@ button {
 	border: var(--theme-core-color-fg);
 }
 
-section.calculator {
+footer {
 	display: flex;
+	justify-content: center;
+}
+
+main {
+	display: flex;
+	justify-content: center;
+}
+
+section.calculator {
 	flex-wrap: wrap;
 	flex-direction: row;
+	height: auto;
+	width: 31vw;
 }
 
 section.calculator button {
 	display: flex;
 	margin: .3rem;
-	height: 4.2rem;
-	width: 4.2rem;
+	height: 100%;
+	width: 100%;
+	min-width: 4.2rem;
+	min-height: 4.2rem;
+	aspect-ratio: 1 / 1;
 }
 
 section.calculator button.btn-equals {
 	position: relative;
-	bottom: 4.8rem;
-	height: 9rem;
 }
 
 section.calculator section.numpad-row {
 	display: flex;
 	flex-direction: row;
-}
-
-section.calculator section.numpad-row:last-child {
-	margin: 0 0 -5rem 0;
 }
 
 .accent {
@@ -66,18 +74,28 @@ section.calculator section.numpad-row:last-child {
 	font-family: Doto, sans-serif;
 	font-weight: 400;
 	font-style: normal;
-	height: 4rem;
+	min-height: 4.2rem;
 	justify-content: end;
-	width: 19.2rem;
+	width: 100%;
+	aspect-ratio: 4 / 1;
+	min-width: 19rem;
 }
 
 .display-output {
 	color: var(--theme-core-color-accent-fg);
 	padding-left: .5rem;
-	font-size: 3rem;
+	font-size: 4rem;
 }
 
 .icon-copyleft {
   display: inline-block;
   transform: rotate(180deg);
+}
+
+@media only screen and (max-width: 786px) {
+
+	section.calculator {
+		width: 85vw;
+	}
+
 }

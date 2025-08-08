@@ -33,13 +33,7 @@ const btn = document.querySelectorAll("button").forEach(item => {
 				valueCurrent1 = [];
 			}
 
-			/* TODO: Continue with logic that would allow the incoming valueCurrent to operate with
-			 * valueCurrent2. Essentially, what is happening is that we're saving the value of the
-			 * first calculation with valueCurrent2, and erasing the values of valueCurrent &
-			 * valueCurrent1 after assigning a value to valueCurrent2. At that point, we have a
-			 * new incoming value with valueCurrent again, and the computer doesn't know how to
-			 * interact with a new valueCurrent & and empty valueCurrent1.
-
+			// TODO: Read latest commit notes
 		}
 	});
 });

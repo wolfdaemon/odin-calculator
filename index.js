@@ -1,86 +1,73 @@
-let numArr = [];
-
-function add(num, num1) {
-	return num + num1;
-};
-
-function subtract(num, num1) {
-	return num - num1;
-};
-
-function multiply(num, num1) {
-	return num * num1;
-};
-
-function divide(num, num1) {
-	return num / num1;
-}
-
-function operate(num, num1, equ) {
-	switch (equ) {
-		case "addi":
-			return add(num, num1);
-			break;
-		case "subt":
-			return subtract(num, num1);
-			break;
-		case "mult":
-			return multiply(num, num1);
-			break;
-		case "divi":
-			return divide(num, num1);
-			break;
-	}
-}
-
-const displayOutput = document.querySelector(".display-output");
+let valueCurrent = [];
+let valueCurrent1 = [];
+let valueCurrent2 = 0;
+let operationCurrent = null;
 
 const btn = document.querySelectorAll("button").forEach(item => {
 	item.addEventListener("click", (e) => {
-		displayOutput.innerHTML = e.target.innerHTML;
 
-		// TODO: How do we make it so that, within a "compute" cycle,
-		// we can ensure that the second number (num1) is applied with
-		// the second click within that cycle? Find this out, please.
-		//
-		// Oh god, are we going to have to use an array and a array
-		// method to ensure this happens? Ugh :facepalm:, makes sense.
-
-		let num = e.target.innerHTML;
-		let equ = e.target.innerHTML;
-
-		num = parseInt(num, 10);
-
-		if (!isNaN(num)) {
-			numArr.push(num);
+		let value = e.target.innerHTML;
+		if (isNaN(value)) {
+			operationCurrent = value;
+		}
+		else {
+			valueCurrent.push(value);
+			updateDisplay(valueCurrent.join("")); // display the current numbers in place
 		}
 
-		switch (equ) {
-			case "+":
-				equ = "addi";
-				numArr.push(equ);
-				break;
-			case "-":
-				equ = "subt";
-				numArr.push(equ);
-				break;
-			case "*":
-				equ = "mult"; 
-				numArr.push(equ);
-				break;
-			case "÷":
-				equ = "divi"; 
-				numArr.push(equ);
-				break;
-		}
+		if (operationCurrent === null) {
+			return;
+		} else {
+			// in the event an operation has been established, actually convert the display number into an int
+			if (valueCurrent1.length === 0) {
+				valueCurrent1 = parseInt(valueCurrent.join(""), 10);
+				valueCurrent = [];
+			} else {
+				valueCurrent = parseInt(valueCurrent.join(""), 10);
+			}
 
-		if (e.target.innerHTML === "=" && numArr.length === 3) {
-			let dis = operate(numArr[0], numArr[2], numArr[1]);
-			displayOutput.innerHTML = dis;
-		}
+			if (valueCurrent > 0 && valueCurrent1 > 0) {
+		 		valueCurrent2 = operate(valueCurrent1, operationCurrent, valueCurrent);
+				updateDisplay(valueCurrent2);
+				valueCurrent = [];
+				valueCurrent1 = [];
+			}
 
+			/* TODO: Continue with logic that would allow the incoming valueCurrent to operate with
+			 * valueCurrent2. Essentially, what is happening is that we're saving the value of the
+			 * first calculation with valueCurrent2, and erasing the values of valueCurrent &
+			 * valueCurrent1 after assigning a value to valueCurrent2. At that point, we have a
+			 * new incoming value with valueCurrent again, and the computer doesn't know how to
+			 * interact with a new valueCurrent & and empty valueCurrent1.
+
+		}
 	});
 });
+
+
+function operate(a, op, b) {
+	switch (op) {
+		case "+":
+			return a + b;
+			break;
+		case "-":
+			return a - b;
+			break;
+		case "*":
+			return a * b;
+			break;
+		case "÷":
+			return a / b;
+			break;
+		default:
+			return a;
+	}
+}
+
+function updateDisplay(value) {
+	const displayOutput = document.querySelector(".display-output");
+	displayOutput.innerHTML = value;
+}
 
 /*
 function sum(arr) {

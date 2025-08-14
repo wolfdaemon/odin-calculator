@@ -1,46 +1,57 @@
 let valueCurrent = [];
 let valueCurrent1 = [];
 let valueCurrent2 = 0;
-let operationCurrent = null;
+let operationCurrent = [];
 
 const btn = document.querySelectorAll("button").forEach(item => {
 	item.addEventListener("click", (e) => {
 
 		let value = e.target.innerHTML;
+
 		if (isNaN(value)) {
-			operationCurrent = value;
+			operationCurrent.push(value);
 		}
 		else {
-			valueCurrent.push(value);
-			updateDisplay(valueCurrent.join("")); // display the current numbers in place
+			displayNumJoin(value);
 		}
 
-		if (operationCurrent === null) {
+		if (operationCurrent[0] === undefined) {
 			return;
-		} else {
-			// in the event an operation has been established, actually convert the display number into an int
+		} else if (operationCurrent[0] !== undefined) {
 			if (valueCurrent1.length === 0) {
 				valueCurrent1 = parseInt(valueCurrent.join(""), 10);
 				valueCurrent = [];
 			} else {
-				valueCurrent = parseInt(valueCurrent.join(""), 10);
+				if (operationCurrent[1] !== undefined) {
+					valueCurrent = parseInt(valueCurrent.join(""), 10); 
+					valueCurrent2 = operate(valueCurrent1, operationCurrent, valueCurrent);
+					updateDisplay(valueCurrent2);
+					valueCurrent = [];
+					valueCurrent1 = [];
+				}
+				return;
 			}
-
-			if (valueCurrent > 0 && valueCurrent1 > 0) {
-		 		valueCurrent2 = operate(valueCurrent1, operationCurrent, valueCurrent);
-				updateDisplay(valueCurrent2);
-				valueCurrent = [];
-				valueCurrent1 = [];
-			}
-
-			// TODO: Read latest commit notes
+		} else {
+			valueCurrent2 = operate(valueCurrent1, operationCurrent, valueCurrent);
+			updateDisplay(valueCurrent2);
+			valueCurrent = [];
+			valueCurrent1 = [];
 		}
+
+		if (valueCurrent > 0 && valueCurrent1 > 0 && operationCurrent[1] !== undefined) {
+			valueCurrent2 = operate(valueCurrent1, operationCurrent, valueCurrent);
+			updateDisplay(valueCurrent2);
+			valueCurrent = [];
+			valueCurrent1 = [];
+		}
+
 	});
+
 });
 
 
 function operate(a, op, b) {
-	switch (op) {
+	switch (op[0]) {
 		case "+":
 			return a + b;
 			break;
@@ -61,6 +72,11 @@ function operate(a, op, b) {
 function updateDisplay(value) {
 	const displayOutput = document.querySelector(".display-output");
 	displayOutput.innerHTML = value;
+}
+
+function displayNumJoin(value) {
+	valueCurrent.push(value);
+	updateDisplay(valueCurrent.join(""));
 }
 
 /*

@@ -27,7 +27,9 @@ const btn = document.querySelectorAll("button").forEach(item => {
 					valueCurrent2 = operate(valueCurrent1, operationCurrent, valueCurrent);
 					updateDisplay(valueCurrent2);
 					valueCurrent = [];
-					valueCurrent1 = [];
+					valueCurrent1 = valueCurrent2;
+					valueCurrent2 = [];
+					operationCurrent.shift();
 				}
 				return;
 			}
@@ -35,7 +37,7 @@ const btn = document.querySelectorAll("button").forEach(item => {
 			valueCurrent2 = operate(valueCurrent1, operationCurrent, valueCurrent);
 			updateDisplay(valueCurrent2);
 			valueCurrent = [];
-			valueCurrent1 = [];
+			valueCurrent2 = [];
 		}
 
 		if (valueCurrent > 0 && valueCurrent1 > 0 && operationCurrent[1] !== undefined) {

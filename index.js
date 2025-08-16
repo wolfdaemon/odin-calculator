@@ -23,13 +23,17 @@ const btn = document.querySelectorAll("button").forEach(item => {
 				valueCurrent = [];
 			} else {
 				if (operationCurrent[1] !== undefined) {
-					valueCurrent = parseInt(valueCurrent.join(""), 10); 
-					valueCurrent2 = operate(valueCurrent1, operationCurrent, valueCurrent);
-					updateDisplay(valueCurrent2);
-					valueCurrent = [];
-					valueCurrent1 = valueCurrent2;
-					valueCurrent2 = [];
-					operationCurrent.shift();
+					if (valueCurrent.length === 0) {
+						operationCurrent.shift();
+					} else {
+						valueCurrent = parseInt(valueCurrent.join(""), 10); 
+						valueCurrent2 = operate(valueCurrent1, operationCurrent, valueCurrent);
+						updateDisplay(valueCurrent2);
+						valueCurrent = [];
+						valueCurrent1 = valueCurrent2;
+						valueCurrent2 = [];
+						operationCurrent.shift();
+					}
 				}
 				return;
 			}

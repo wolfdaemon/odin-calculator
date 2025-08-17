@@ -8,7 +8,12 @@ const btn = document.querySelectorAll("button").forEach(item => {
 
 		let value = e.target.innerHTML;
 
-		if (value === ".") {
+		if (value === "CLEAR") {
+			valueCurrent = [];
+			valueCurrent1 = [];
+			valueCurrent2 = [];
+			operationCurrent = [];
+		} else if (value === ".") {
 			displayNumJoin(value);
 		} else if (isNaN(value)) {
 			operationCurrent.push(value);
@@ -30,6 +35,7 @@ const btn = document.querySelectorAll("button").forEach(item => {
 						valueCurrent = parseFloat(valueCurrent.join(""), 10); 
 						valueCurrent2 = operate(valueCurrent1, operationCurrent, valueCurrent);
 						valueCurrent2 = valueCurrent2.toFixed(4);
+						valueCurrent2 = parseFloat(convIfWholeNum(valueCurrent2));
 						updateDisplay(valueCurrent2);
 						valueCurrent = [];
 						valueCurrent1 = valueCurrent2;
@@ -56,6 +62,14 @@ const btn = document.querySelectorAll("button").forEach(item => {
 	});
 
 });
+
+function convIfWholeNum(value) {
+	if (Number.isInteger(value)) {
+		return parseInt(value);
+	} else {
+		return value;
+	}
+}
 
 function displayNumJoin(value) {
 	valueCurrent.push(value);

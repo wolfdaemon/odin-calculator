@@ -52,7 +52,7 @@ section.calculator button {
 }
 
 section.calculator button.btn-equals {
-	position: relative;
+	height: 5rem;
 }
 
 section.calculator section.numpad-row {

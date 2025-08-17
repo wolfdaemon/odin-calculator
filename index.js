@@ -8,10 +8,11 @@ const btn = document.querySelectorAll("button").forEach(item => {
 
 		let value = e.target.innerHTML;
 
-		if (isNaN(value)) {
+		if (value === ".") {
+			displayNumJoin(value);
+		} else if (isNaN(value)) {
 			operationCurrent.push(value);
-		}
-		else {
+		} else {
 			displayNumJoin(value);
 		}
 
@@ -19,15 +20,16 @@ const btn = document.querySelectorAll("button").forEach(item => {
 			return;
 		} else if (operationCurrent[0] !== undefined) {
 			if (valueCurrent1.length === 0) {
-				valueCurrent1 = parseInt(valueCurrent.join(""), 10);
+				valueCurrent1 = parseFloat(valueCurrent.join(""), 10);
 				valueCurrent = [];
 			} else {
 				if (operationCurrent[1] !== undefined) {
 					if (valueCurrent.length === 0) {
 						operationCurrent.shift();
 					} else {
-						valueCurrent = parseInt(valueCurrent.join(""), 10); 
+						valueCurrent = parseFloat(valueCurrent.join(""), 10); 
 						valueCurrent2 = operate(valueCurrent1, operationCurrent, valueCurrent);
+						valueCurrent2 = valueCurrent2.toFixed(4);
 						updateDisplay(valueCurrent2);
 						valueCurrent = [];
 						valueCurrent1 = valueCurrent2;
@@ -55,6 +57,10 @@ const btn = document.querySelectorAll("button").forEach(item => {
 
 });
 
+function displayNumJoin(value) {
+	valueCurrent.push(value);
+	updateDisplay(valueCurrent.join(""));
+}
 
 function operate(a, op, b) {
 	switch (op[0]) {
@@ -78,11 +84,6 @@ function operate(a, op, b) {
 function updateDisplay(value) {
 	const displayOutput = document.querySelector(".display-output");
 	displayOutput.innerHTML = value;
-}
-
-function displayNumJoin(value) {
-	valueCurrent.push(value);
-	updateDisplay(valueCurrent.join(""));
 }
 
 /*

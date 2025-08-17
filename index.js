@@ -9,10 +9,7 @@ const btn = document.querySelectorAll("button").forEach(item => {
 		let value = e.target.innerHTML;
 
 		if (value === "CLEAR") {
-			valueCurrent = [];
-			valueCurrent1 = [];
-			valueCurrent2 = [];
-			operationCurrent = [];
+			clearAll();
 		} else if (value === ".") {
 			displayNumJoin(value);
 		} else if (isNaN(value)) {
@@ -32,7 +29,14 @@ const btn = document.querySelectorAll("button").forEach(item => {
 					if (valueCurrent.length === 0) {
 						operationCurrent.shift();
 					} else {
-						valueCurrent = parseFloat(valueCurrent.join(""), 10); 
+						valueCurrent = parseFloat(valueCurrent.join(""), 10);
+
+						if (operationCurrent[0] === "÷" && (valueCurrent === 0 || valueCurrent1 === 0)) {
+							clearAll();
+							updateDisplay("NUH UH💀");
+							return;
+						}
+
 						valueCurrent2 = operate(valueCurrent1, operationCurrent, valueCurrent);
 						valueCurrent2 = valueCurrent2.toFixed(4);
 						valueCurrent2 = parseFloat(convIfWholeNum(valueCurrent2));
@@ -62,6 +66,14 @@ const btn = document.querySelectorAll("button").forEach(item => {
 	});
 
 });
+
+function clearAll() {
+	valueCurrent = [];
+	valueCurrent1 = [];
+	valueCurrent2 = [];
+	operationCurrent = [];
+	updateDisplay();
+}
 
 function convIfWholeNum(value) {
 	if (Number.isInteger(value)) {

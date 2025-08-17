@@ -10,6 +10,7 @@ const btn = document.querySelectorAll("button").forEach(item => {
 
 		if (value === "CLEAR") {
 			clearAll();
+			updateDisplay("");
 		} else if (value === ".") {
 			displayNumJoin(value);
 		} else if (isNaN(value)) {
